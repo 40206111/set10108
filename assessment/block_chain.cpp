@@ -13,11 +13,12 @@ using namespace std::chrono;
 // from parallelisation we will just use the index value, so time increments
 // by one each time: 1, 2, 3, etc.
 block::block(uint32_t index, const string &data)
-: _index(index), _data(data), _nonce(0), _time(static_cast<long>(index))
+	: _index(index), _data(data), _nonce(0), _time(static_cast<long>(index))
 {
 }
 
-void block::mine_block(uint32_t difficulty) noexcept
+//updated to take in file that holds data
+void block::mine_block(uint32_t difficulty, ofstream *file) noexcept
 {
     string str(difficulty, '0');
 
@@ -32,6 +33,8 @@ void block::mine_block(uint32_t difficulty) noexcept
     auto end = system_clock::now();
     duration<double> diff = end - start;
 
+	//write time to file
+	*file << diff.count() << ",";
     cout << "Block mined: " << _hash << " in " << diff.count() << " seconds" << endl;
 }
 
@@ -45,12 +48,12 @@ std::string block::calculate_hash() const noexcept
 block_chain::block_chain()
 {
     _chain.emplace_back(block(0, "Genesis Block"));
-    _difficulty = 6;
+	_difficulty = 0;
 }
 
 void block_chain::add_block(block &&new_block) noexcept
 {
     new_block.prev_hash = get_last_block().get_hash();
-    new_block.mine_block(_difficulty);
+    new_block.mine_block(_difficulty, &file);
     _chain.push_back(new_block);
 }
