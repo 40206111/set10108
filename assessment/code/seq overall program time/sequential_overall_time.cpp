@@ -15,13 +15,12 @@ int main()
 
 	//open file to hold data
 	//bchain.file.open("sequential-5.csv");
-	file.open("parallel_for-5.csv");
+	file.open("sequential-3-overall.csv");
 
 	for (uint32_t j = 0; j < 100u; ++j)
 	{
 		auto start = system_clock::now();
 
-#pragma omp parallel for num_threads(num_threads)
 		for (uint32_t i = 1; i < 11u; ++i)
 		{
 			cout << "Mining block " << i << "..." << endl;

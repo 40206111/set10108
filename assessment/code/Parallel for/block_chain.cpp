@@ -34,7 +34,7 @@ void block::mine_block(uint32_t difficulty, ofstream *file) noexcept
     duration<double> diff = end - start;
 
 	//write time to file
-	*file << diff.count() << ",";
+	//*file << diff.count() << ",";
     cout << "Block mined: " << _hash << " in " << diff.count() << " seconds" << endl;
 }
 
