@@ -4,6 +4,7 @@
 #include <vector>
 #include <fstream>
 
+
 class block
 {
 private:
@@ -46,4 +47,5 @@ public:
 	//file for outputting data
 	std::ofstream file;
     void add_block(block &&new_block) noexcept;
+	void empty();
 };

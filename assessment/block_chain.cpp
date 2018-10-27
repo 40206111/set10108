@@ -29,7 +29,6 @@ void block::mine_block(uint32_t difficulty, ofstream *file) noexcept
         ++_nonce;
         _hash = calculate_hash();
     }
-
     auto end = system_clock::now();
     duration<double> diff = end - start;
 
@@ -48,7 +47,7 @@ std::string block::calculate_hash() const noexcept
 block_chain::block_chain()
 {
     _chain.emplace_back(block(0, "Genesis Block"));
-	_difficulty = 0;
+	_difficulty = 5;
 }
 
 void block_chain::add_block(block &&new_block) noexcept

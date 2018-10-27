@@ -10,15 +10,15 @@ using namespace std::chrono;
 
 int main()
 {
-    block_chain bchain;
 	std::ofstream file;
 
 	//open file to hold data
-	//bchain.file.open("sequential-5.csv");
 	file.open("sequential-3-overall.csv");
 
 	for (uint32_t j = 0; j < 100u; ++j)
 	{
+		block_chain bchain;
+
 		auto start = system_clock::now();
 
 		for (uint32_t i = 1; i < 11u; ++i)
@@ -35,6 +35,5 @@ int main()
 
 	//close file to hold data
 	file.close();
-	//bchain.file.close();
     return 0;
 }

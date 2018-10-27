@@ -25,7 +25,7 @@ public:
 
     // Difficulty is the minimum number of zeros we require at the
     // start of the hash.
-    void mine_block(uint32_t difficulty, std::ofstream *file) noexcept;
+    void mine_block(uint32_t difficulty) noexcept;
 
     inline const std::string& get_hash() const noexcept { return _hash; }
 
@@ -43,7 +43,5 @@ private:
 
 public:
     block_chain();
-	//file for outputting data
-	std::ofstream file;
     void add_block(block &&new_block) noexcept;
 };

@@ -33,8 +33,6 @@ void block::mine_block(uint32_t difficulty, ofstream *file) noexcept
     auto end = system_clock::now();
     duration<double> diff = end - start;
 
-	//write time to file
-	//*file << diff.count() << ",";
     cout << "Block mined: " << _hash << " in " << diff.count() << " seconds" << endl;
 }
 
@@ -54,6 +52,6 @@ block_chain::block_chain()
 void block_chain::add_block(block &&new_block) noexcept
 {
     new_block.prev_hash = get_last_block().get_hash();
-    new_block.mine_block(_difficulty, &file);
+    new_block.mine_block(_difficulty);
     _chain.push_back(new_block);
 }
