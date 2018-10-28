@@ -44,7 +44,7 @@ void block::mine_block(uint32_t difficulty, ofstream *file) noexcept
 	while (flag)
 	{
 		//paralise hash calculation
-#pragma omp parallel for num_threads(thread::hardware_concurrency()) private(temp_hash) shared(flag) schedule(dynamic)
+#pragma omp parallel for num_threads(thread::hardware_concurrency()) private(temp_hash) shared(flag) schedule(static, 1)
 		for (int i = initial; i < attempts; ++i)
 		{
 			temp_hash = calculate_hash(i);
@@ -76,7 +76,7 @@ std::string block::calculate_hash(int nonce) const noexcept
 block_chain::block_chain()
 {
 	_chain.emplace_back(block(0, "Genesis Block"));
-	_difficulty = 5;
+	_difficulty = 0;
 }
 
 void block_chain::add_block(block &&new_block) noexcept
