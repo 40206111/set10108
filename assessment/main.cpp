@@ -12,12 +12,12 @@ int main()
 	std::ofstream file;
 
 	//open file to hold data
-	file.open("parallel_rt-5-overall.csv");
+	file.open("parallel_rt-0-overall.csv");
 
 	for (uint32_t j = 0; j < 100u; ++j)
 	{
 		block_chain bchain;
-		bchain.file.open("parallel_rt-5.csv", ios::app);
+		bchain.file.open("parallel_rt-0.csv", ios::app);
 
 		auto start = system_clock::now();
 
